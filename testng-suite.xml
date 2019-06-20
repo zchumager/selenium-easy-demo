@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestAll" verbose="1">
+
+  <test name="form">
+	<classes>
+		<class name="com.itexico.testing.tests.BasicFirstFormTest"/>
+	</classes>
+  </test>
+  <test name="check">
+	<classes>
+		<class name="com.itexico.testing.tests.BasicCheckFormTest"/>
+	</classes>
+  </test>
+  <test name="radio">
+	<classes>
+		<class name="com.itexico.testing.tests.BasicRadioButtonTest"/>
+	</classes>
+  </test>
+</suite>
