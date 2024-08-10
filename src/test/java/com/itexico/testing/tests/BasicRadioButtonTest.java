@@ -3,6 +3,7 @@ package com.itexico.testing.tests;
 import java.util.Arrays;
 import java.util.List;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -13,13 +14,12 @@ import com.itexico.testing.bases.BaseTest;
 import com.itexico.testing.steps.BasicRadioButtonSteps;
 
 public class BasicRadioButtonTest extends BaseTest<BasicRadioButtonSteps>{
-	
-	public BasicRadioButtonTest() {
-		this.driver = new ChromeDriver();
-	}
-	
+
 	@BeforeTest
 	public void setup() {
+		WebDriverManager.chromedriver().setup();
+		this.driver = new ChromeDriver();
+
 		this.driver.manage().window().maximize();
 		this.driver.get("https://www.seleniumeasy.com/test/basic-radiobutton-demo.html");
 		this.steps = new BasicRadioButtonSteps(this.driver);

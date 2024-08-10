@@ -2,6 +2,7 @@ package com.itexico.testing.tests;
 
 import java.util.Map;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -11,12 +12,11 @@ import com.itexico.testing.bases.BaseTest;
 import com.itexico.testing.steps.BasicCheckFormSteps;
 
 public class BasicCheckFormTest extends BaseTest<BasicCheckFormSteps> {
-	public BasicCheckFormTest() {
-		this.driver = new ChromeDriver();
-	}
-	
+
 	@BeforeTest
 	public void setup() {
+		WebDriverManager.chromedriver().setup();
+		this.driver = new ChromeDriver();
 		this.driver.manage().window().maximize();
 		this.driver.get("https://www.seleniumeasy.com/test/basic-checkbox-demo.html");
 		this.steps = new BasicCheckFormSteps(this.driver);

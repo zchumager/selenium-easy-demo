@@ -1,9 +1,10 @@
 package com.itexico.testing.tests;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.Assert;
@@ -17,22 +18,19 @@ import com.itexico.testing.steps.BasicFirstFormSteps;
 public class BasicFirstFormTest extends BaseTest<BasicFirstFormSteps>{
 	
 	private EventFiringWebDriver eventDriver;
-	private List<String> l = new ArrayList<String>(Arrays.asList("Java"));
-	
-	private BasicFirstFormTest() {
-		
-		this.driver = new ChromeDriver();
-		
-		this.eventDriver = new EventFiringWebDriver(this.driver);
-		
-		EvtListener listener = new EvtListener();
-		listener.setList(l);
-		this.eventDriver.register(listener);
-		
-	}
+	private List<String> l = new ArrayList<String>(Collections.singletonList("Java"));
 	
 	@BeforeTest
 	public void setup() {
+		WebDriverManager.chromedriver().setup();
+		this.driver = new ChromeDriver();
+
+		this.eventDriver = new EventFiringWebDriver(this.driver);
+
+		EvtListener listener = new EvtListener();
+		listener.setList(l);
+		this.eventDriver.register(listener);
+
 		this.driver.manage().window().maximize();
 		this.driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
 		

@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,10 +21,6 @@ public class JavascriptAlertBoxTest extends BaseTest<JavascriptAlertBoxSteps>{
 	
 	private WebDriverWait wait;
 	private Alert alert;
-
-	public JavascriptAlertBoxTest() {
-		this.driver = new ChromeDriver();
-	}
 	
 	public void exec(Alert a, String method)  {
 		Method m;
@@ -44,6 +41,9 @@ public class JavascriptAlertBoxTest extends BaseTest<JavascriptAlertBoxSteps>{
 	
 	@BeforeTest
 	private void setup() {
+		WebDriverManager.chromedriver().setup();
+		this.driver = new ChromeDriver();
+
 		this.driver.manage().window().maximize();
 		this.driver.get("https://www.seleniumeasy.com/test/javascript-alert-box-demo.html");
 		this.steps = new JavascriptAlertBoxSteps(this.driver);
